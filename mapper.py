@@ -2,7 +2,6 @@
 
 import sys, re, math
 
-CLUSTERS_FILENAME = 'clusters.txt'
 # Initialize Cluster data
 cluster_data = [[0,-1.071406050096339,-73.83643799614647],
 [1,-23.928828915662656,-46.93003650602411],
@@ -18,15 +17,8 @@ cluster_data = [[0,-1.071406050096339,-73.83643799614647],
 clusters = []
 delta_clusters = dict()
 
-def read_from_clusters_cache_file(clusters_file):
-    f = open(clusters_file, 'r')
-    data = f.read()
-    f.close()
-    del f
-    return data
 
 def read_clusters():
-    #cluster_data = read_from_clusters_cache_file(CLUSTERS_FILENAME)
     for data in cluster_data:
         centroid_id, latitude, longitude = data
         clusters.append((centroid_id, float(latitude), float(longitude)))
