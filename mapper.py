@@ -3,6 +3,7 @@
 import sys, re, math
 
 CLUSTERS_FILENAME = 'clusters.txt'
+
 # Initialize Cluster data
 cluster_data = [[0,-1.071406050096339,-73.83643799614647],
 [1,-23.928828915662656,-46.93003650602411],
@@ -26,14 +27,14 @@ def read_from_clusters_cache_file(clusters_file):
     return data
 
 def read_clusters():
-    #cluster_data = read_from_clusters_cache_file(CLUSTERS_FILENAME)
+    # cluster_data = read_from_clusters_cache_file(CLUSTERS_FILENAME)
     for data in cluster_data:
         centroid_id, latitude, longitude = data
         clusters.append((centroid_id, float(latitude), float(longitude)))
         delta_clusters[centroid_id] = (0, 0, 0)
 
 def get_distance_coords(lat1, long1, lat2, long2):
-	#Calculate euclidian distance between two coordinates
+	# Calculate euclidian distance between two coordinates
     dist = math.sqrt(math.pow(lat1 - lat2,2) + math.pow(long1 - long2,2))
     return dist
 
@@ -69,5 +70,3 @@ for line in sys.stdin:
 for key in delta_clusters:
     sumy, sumx, cont = delta_clusters[key]
     print(str(key) + "\t" + str(sumy)+";"+str(sumx)+";"+str(cont))
-
-

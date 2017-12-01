@@ -6,14 +6,14 @@ REGION_EXTENT = (6.3,-74.5,-35.2,-31.9) #Upper-left and Bottom-Right coords for 
 
 valid_clusters = []
 
-#Gets a random coordinate for Brazilian extent
+# Gets a random coordinate for Brazilian extent
 def get_random_coords_in_region():
     latitude = random.uniform(REGION_EXTENT[2], REGION_EXTENT[0])
     longitude = random.uniform(REGION_EXTENT[1], REGION_EXTENT[3])
     return latitude, longitude
 
-#When a cluster has no point associated, this function suggests a new coordinate for it, 
-#based on existing clusters or generating a random coordinate
+# When a cluster has no point associated, this function suggests a new coordinate for it, 
+# based on existing clusters or generating a random coordinate
 def suggest_valid_coords_to_cluster():
     valid_clusters_count = len(valid_clusters)
     if valid_clusters_count <= 1:  
@@ -33,7 +33,8 @@ def suggest_valid_coords_to_cluster():
     return new_lat, new_long
 
 def emit_new_lat_long(cluster_id, sumy_total, sumx_total, count_total):
-    if count_total == 0: #if the cluster did not attracted any point, change to a new coord        
+    # If the cluster did not attracted any point, change to a new coord
+    if count_total == 0:         
         new_lat, new_long = suggest_valid_coords_to_cluster()
         return
     else:
@@ -69,4 +70,3 @@ for line in sys.stdin:
 
 if oldKey != None:
     emit_new_lat_long(oldKey, sumy_total, sumx_total, count_total)
-
